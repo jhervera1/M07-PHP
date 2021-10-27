@@ -1,7 +1,7 @@
 <?php
 
-include 'accessBD.php';
-
+include 'Controlers/accessBD.php';
+session_start();
 
 $username = $_POST["username"];
 $password = $_POST["password"];
@@ -15,6 +15,7 @@ if(isset($_POST['submit'])) {
 
     while ($fila=$consulta->fetch_assoc()) {
         if($username == $fila['Usuario'] && $password == $fila['Contraseña']){
+            $_SESSION['userID'] = $fila['ID'];
             $confirmedUser = true;
             break;
         }
@@ -23,7 +24,8 @@ if(isset($_POST['submit'])) {
     if(!$confirmedUser){
         echo "El usuari o la contrasenya son incorrectes";
     }else{
-        header("Location:perfil.php?user=".$username);
+        
+        header("Location:perfil.php");
     }
 
 } 

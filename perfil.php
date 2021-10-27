@@ -1,7 +1,7 @@
 <?php
-include 'accessBD.php';
-
-$username = $_GET['user'];
+include 'Controlers/accessBD.php';
+session_start();
+$id = $_SESSION['userID'];
 $bd = new accessBD();
 
 if(isset($_POST['submit'])){
@@ -22,23 +22,22 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <div>
-        <?php
+        <div class='wrapper fadeInDown'>
+            <div id='formContent'>
+                <?php
         
-            $sql = "SELECT * FROM `usuarios` WHERE Usuario='$username'";
-            $consulta=mysqli_query($bd->getConnection(),$sql);
-            while ($fila=$consulta->fetch_assoc()) {
-                echo "<div class='wrapper fadeInDown'>";
-                echo "<div id='formContent'>";
-                echo "<img class='profile_image' src='".$fila['image']."' >";
-                echo "<p class='flex_p'><b>Usuari:</b>".$fila['Usuario']."</p>";
-                echo "<p class='flex_p'><b>Contrasenya:</b>".$fila['Contraseña']."</p>";
-                echo "<p class='flex_p'><b>Correu:</b>".$fila['Correo']."</p>";
-                echo "<button type='submit' name='submit' class='buttons'>Tancar sessio</button>";
-                echo "</div>";
-                echo "</div>";
-            }
-        ?>
-
+                    $sql = "SELECT * FROM `usuarios` WHERE ID='$id'";
+                    $consulta=mysqli_query($bd->getConnection(),$sql);
+                    while ($fila=$consulta->fetch_assoc()) {
+                        echo "<img class='profile_image' src='".$fila['image']."' >";
+                        echo "<p class='flex_p'><b>Usuari:</b>".$fila['Usuario']."</p>";
+                        echo "<p class='flex_p'><b>Contrasenya:</b>".$fila['Contraseña']."</p>";
+                        echo "<p class='flex_p'><b>Correu:</b>".$fila['Correo']."</p>";
+                        echo "<button type='submit' name='submit' class='buttons'>Tancar sessio</button>";
+                    }
+                ?>
+            </div>
+        </div>
     </div>
 
 </body>

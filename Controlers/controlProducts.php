@@ -51,7 +51,7 @@ class ControlProducts{
         foreach ($this->productsArray as $valor){
             echo "<tr><th>".$valor->getName()."</th><th>".$valor->getPrice()."</th>";
             echo "<th><a href='../modifyProd.php?id=".$valor->getId()."&user=".$user."'><img  class='amd_icon' src='imgs/edit_icon.png'> </a>";
-            echo "<a href='#'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>";
+            echo "<a href='../deleteProd.php?pid=".$valor->getId()."&user=".$user."'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>";
         }
     }
 
@@ -69,8 +69,17 @@ class ControlProducts{
             echo "ERROR";
            }
     }
-    function deleteProduct($product){
+    function deleteProduct($id,$user){
+        $sql3 = "DELETE FROM productos WHERE `ID` =".$id ;
+        $res=mysqli_query($this->bd->getConnection(),$sql3);
+        if ($res === TRUE) {
+            $this->fetchAllProducts();
+            header("Location:adminProds.php?user=".$user);
+           }else {
+            echo "ERROR";
+           }
     }
+
     function addProduct(){
 
     }

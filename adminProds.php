@@ -16,7 +16,7 @@
         echo "</tr>";
         $controlProds->showProducts($username);
         echo "</table>";
-        echo "<img class='amd_icon' src='imgs/add_icon.png'>";
+        echo "<a href='addProds.php?&user=".$username."' ><img class='amd_icon' src='imgs/add_icon.png'></a>";
         echo "</div>";
     }else{
         echo 'no sos admin viejo sabroso';
