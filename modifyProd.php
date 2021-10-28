@@ -1,11 +1,9 @@
 <?php 
     include 'Controlers/controlProducts.php';
-
+    session_start();
     $id = $_GET['id'];
-    $user = $_GET['user'];
     $controlProducts = new ControlProducts();
     $product;
-    echo $user;
     foreach($controlProducts->getProducts() as $prod){
         if($prod->getId() == $id){
             $product = $prod;
@@ -24,7 +22,7 @@
     <title>modificar producto</title>
 </head>
 <body>
-    <form action="updateProds.php?id=<?php echo $id ?>&user=<?php echo $user ?>" method="POST" enctype="multipart/form-data">
+    <form action="updateProds.php?id=<?php echo $id ?>" method="POST" enctype="multipart/form-data">
         <label>Id </label><br>
         <input type="number" id="pid" name="pid" value="<?php echo $product->getId() ?>"><br>
         <label>Nombre </label><br>

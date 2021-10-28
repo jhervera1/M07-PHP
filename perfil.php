@@ -2,6 +2,8 @@
 include 'Controlers/accessBD.php';
 session_start();
 $id = $_SESSION['userID'];
+$admin = $_SESSION['admin'];
+
 $bd = new accessBD();
 
 if(isset($_POST['submit'])){
@@ -35,6 +37,9 @@ if(isset($_POST['submit'])){
                         echo "<p class='flex_p'><b>Correu:</b>".$fila['Correo']."</p>";
                         echo "<button type='submit' name='submit' class='buttons'>Tancar sessio</button>";
                     }
+                    if($admin == 1){
+                        echo "<a href='adminProds.php'>administrar productos </a>";
+                    }                
                 ?>
             </div>
         </div>

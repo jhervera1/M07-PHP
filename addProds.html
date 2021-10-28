@@ -1,0 +1,23 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Producto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <form action="addProds.php" method="post" enctype="multipart/form-data">
+                <input type="text" id="name" name="name" class="fadeIn first" placeholder="Nombre del producto"><br><br>
+                <input type="tel" id="price" name="price" class="fadeIn second" placeholder="Precio del producto"><br><br>
+                <label class="fadeIn fourth">Disponibilidad</label>
+                <input type="checkbox" id="available" name="available" class="fadeIn fourth"><br><br>
+                <!--<input type="file" name="image" class="fadeIn fifth" />-->
+                <input type="submit" name="submit" value="registrar" class="fadeIn sixth" >
+
+            </form>
+        </div>
+    </div>
+</body>

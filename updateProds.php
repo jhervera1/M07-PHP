@@ -3,7 +3,7 @@
 include 'models/products.php';
 include 'Controlers/controlProducts.php';
 $id = $_GET['id'];
-$user = $_GET['user'];
+$uId = $_SESSION['id'];
 $name = $_POST['name'];
 $price = $_POST['price'];
 $available = $_POST['available'];
@@ -15,7 +15,7 @@ $product->setName($name);
 $product->setPrice($price);
 $product->setAvailability($available);
 
-$ctrlProds-> modifyProduct($product,$user);
+$ctrlProds-> modifyProduct($product);
 
 
 

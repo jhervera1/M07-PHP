@@ -1,22 +1,22 @@
 <?php
  include 'Controlers/controlProducts.php';
  include 'Controlers/controlUsers.php';
-    
+ session_start();
  
-    $username = $_GET['user'];
+    $id = $_SESSION['userID'];
     $controlProds = new ControlProducts();
     $controlUsers = new ControlUsers();
     
-    if($controlUsers->checkAdmin($username)){
+    if($controlUsers->checkAdmin($id)){
         echo "<link rel='stylesheet' href='styles.css'>";
         echo "<div class='itemList itemListContent'>";
         echo "<table>";
         echo "<tr>";
         echo "<th> Nombre del Producto </th> <th> Precio </th>";
         echo "</tr>";
-        $controlProds->showProducts($username);
+        $controlProds->showProducts();
         echo "</table>";
-        echo "<a href='addProds.php?&user=".$username."' ><img class='amd_icon' src='imgs/add_icon.png'></a>";
+        echo "<a href='addProds.html' ><img class='amd_icon' src='imgs/add_icon.png'></a>";
         echo "</div>";
     }else{
         echo 'no sos admin viejo sabroso';

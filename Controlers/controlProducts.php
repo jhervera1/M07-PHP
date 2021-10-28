@@ -46,42 +46,60 @@ class ControlProducts{
             $this->productsAvailable[] = $product;
         }
     }
-    public function showProducts($user){
+    public function showProducts(){
      
         foreach ($this->productsArray as $valor){
             echo "<tr><th>".$valor->getName()."</th><th>".$valor->getPrice()."</th>";
-            echo "<th><a href='../modifyProd.php?id=".$valor->getId()."&user=".$user."'><img  class='amd_icon' src='imgs/edit_icon.png'> </a>";
-            echo "<a href='../deleteProd.php?pid=".$valor->getId()."&user=".$user."'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>";
+            echo "<th><a href='../modifyProd.php?id=".$valor->getId()."'><img  class='amd_icon' src='imgs/edit_icon.png'> </a>";
+            echo "<a href='../deleteProd.php?pid=".$valor->getId()."'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>";
         }
     }
 
     function getProducts(){
         return $this->productsArray;
     }
-    function modifyProduct($prod,$user){
+    function modifyProduct($prod){
         //modify 
         $sql2 = "UPDATE productos SET Nombre='".$prod->getName()."', Precio='".$prod->getPrice()."', Disponibilidad='".$prod->getAvailability()."' where ID='".$prod->getId()."'";
         $res=mysqli_query($this->bd->getConnection(),$sql2);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location:adminProds.php?user=".$user);
-           }else {
+            header("Location:adminProds.php");
+        }else {
             echo "ERROR";
-           }
+        }
     }
-    function deleteProduct($id,$user){
+    function deleteProduct($id){
         $sql3 = "DELETE FROM productos WHERE `ID` =".$id ;
         $res=mysqli_query($this->bd->getConnection(),$sql3);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location:adminProds.php?user=".$user);
-           }else {
+            header("Location:adminProds.php");
+        }else {
             echo "ERROR";
-           }
+        }
     }
 
-    function addProduct(){
-
+    function addProduct($prodName,$price,$available){
+        
+        $sql4 = "INSERT INTO productos (ID,Nombre,Precio,Disponibilidad) VALUES (NULL,'".$prodName."',".$price.",".$this->convertCheckIntoBool($available).")";
+        echo $sql4;
+        $res=mysqli_query($this->bd->getConnection(),$sql4);
+        if ($res === TRUE) {
+            $this->fetchAllProducts();
+            header("Location:adminProds.php");
+        }else {
+            echo "ERROR";
+        }
+    }
+    private function convertCheckIntoBool($available)
+    {
+        $aval;
+        if($available == 'on'){
+            return $aval = 1;
+        }else{
+            return $aval = 0;
+        }
     }
 }
 

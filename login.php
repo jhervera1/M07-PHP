@@ -16,6 +16,7 @@ if(isset($_POST['submit'])) {
     while ($fila=$consulta->fetch_assoc()) {
         if($username == $fila['Usuario'] && $password == $fila['Contraseña']){
             $_SESSION['userID'] = $fila['ID'];
+            $_SESSION['admin'] = $fila['Admin'];
             $confirmedUser = true;
             break;
         }

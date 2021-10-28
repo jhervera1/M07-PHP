@@ -39,16 +39,16 @@ class ControlUsers{
 
     function showAllUsers(){
         
-        foreach ($this->AllUsers as $valor){
-            echo "<br>".$valor->getUsername();
+        foreach ($this->AllUsers as $value){
+            echo "<br>".$value->getUsername();
         }
 
     }
-    function checkAdmin($username){
+    function checkAdmin($id){
         
-        foreach ($this->AllUsers as $valor){
-            if($valor->getUsername() == $username){
-                if($valor->getAdmin() == 1){
+        foreach ($this->AllUsers as $value){
+            if($value->getId() == $id){
+                if($value->getAdmin() == 1){
                     return true;
                 }
             }
