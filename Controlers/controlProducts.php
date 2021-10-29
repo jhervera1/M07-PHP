@@ -14,7 +14,6 @@ class ControlProducts{
 
         $this->bd = new AccessBD();
         $this->fetchAllProducts();
-        //$this->showProducts();
         $this->fetchAvailableProducts();
     }
 
@@ -48,10 +47,11 @@ class ControlProducts{
     }
     public function showProducts(){
      
-        foreach ($this->productsArray as $valor){
-            echo "<tr><th>".$valor->getName()."</th><th>".$valor->getPrice()."</th>";
-            echo "<th><a href='../modifyProd.php?id=".$valor->getId()."'><img  class='amd_icon' src='imgs/edit_icon.png'> </a>";
-            echo "<a href='../deleteProd.php?pid=".$valor->getId()."'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>";
+        foreach ($this->productsArray as $valor){ ?>
+            <tr><th> <?php echo $valor->getName(); ?></th><th><?php echo $valor->getPrice(); ?></th>
+            <th><a href='../modifyProd.php?id=".$valor->getId()."'><img  class='amd_icon' src='imgs/edit_icon.png'> </a>
+            <a href='../deleteProd.php?pid=".$valor->getId()."'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>
+        <?php
         }
     }
 

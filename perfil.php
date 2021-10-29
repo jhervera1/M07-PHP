@@ -6,10 +6,6 @@ $admin = $_SESSION['admin'];
 
 $bd = new accessBD();
 
-if(isset($_POST['submit'])){
-    header("Location:login.php");
-}
-
 ?>
 
 
@@ -30,12 +26,15 @@ if(isset($_POST['submit'])){
         
                     $sql = "SELECT * FROM `usuarios` WHERE ID='$id'";
                     $consulta=mysqli_query($bd->getConnection(),$sql);
-                    while ($fila=$consulta->fetch_assoc()) {
-                        echo "<img class='profile_image' src='".$fila['image']."' >";
-                        echo "<p class='flex_p'><b>Usuari:</b>".$fila['Usuario']."</p>";
-                        echo "<p class='flex_p'><b>Contrasenya:</b>".$fila['Contraseña']."</p>";
-                        echo "<p class='flex_p'><b>Correu:</b>".$fila['Correo']."</p>";
-                        echo "<button type='submit' name='submit' class='buttons'>Tancar sessio</button>";
+                    if ($fila=$consulta->fetch_assoc()) {?>
+                        <img class='profile_image' src='<?php echo $fila['image'] ?>' >
+                        <p class='flex_p'><b>Usuari:</b><?php echo $fila['Usuario'] ?></p>
+                        <p class='flex_p'><b>Contrasenya:</b><?php echo $fila['Contraseña'] ?></p>
+                        <p class='flex_p'><b>Correu:</b><?php echo $fila['Correo'] ?></p>
+                        <form action="logout.php">
+                            <button type='submit' name='submit' class='buttons'>Tancar sessio</button>
+                        </form>
+                    <?php
                     }
                     if($admin == 1){
                         echo "<a href='adminProds.php'>administrar productos </a>";
