@@ -39,8 +39,10 @@ class ControlUsers{
 
     function showAllUsers(){
         
-        foreach ($this->AllUsers as $value){
-            echo "<br>".$value->getUsername();
+        foreach ($this->AllUsers as $value){?>
+           <tr><th> <?php$value->getUsername();?> </th> </tr>
+
+        <?php
         }
 
     }
