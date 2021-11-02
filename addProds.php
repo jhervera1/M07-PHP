@@ -1,6 +1,5 @@
 <?php
 
-include 'models/products.php';
 include 'Controlers/controlProducts.php';
 
 $name = $_POST['name'];

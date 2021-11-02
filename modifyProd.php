@@ -24,7 +24,7 @@
 <body>
     <form action="updateProds.php?id=<?php echo $id ?>" method="POST" enctype="multipart/form-data">
         <label>Id </label><br>
-        <input type="number" id="pid" name="pid" value="<?php echo $product->getId() ?>"><br>
+        <input type="number" id="pid" name="pid" value="<?php echo $product->getId() ?>" readonly><br>
         <label>Nombre </label><br>
         <input type="text" id="name" name="name" value="<?php echo $product->getName() ?>"><br>
         <label>Precio </label><br>

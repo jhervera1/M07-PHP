@@ -1,7 +1,7 @@
 <?php
 
-include 'models/user.php';
-include_once 'accessBD.php';
+include_once '../models/user.php';
+include 'accessBD.php';
 
 class ControlUsers{
 
@@ -40,7 +40,12 @@ class ControlUsers{
     function showAllUsers(){
         
         foreach ($this->AllUsers as $value){?>
-           <tr><th> <?php$value->getUsername();?> </th> </tr>
+            <tr>
+                <th> <?php echo $value->getUsername(); ?> </th>
+                <th><a href='../crudUsers/userProfile.php?id=<?php echo $value->getId()?>'><img  class='amd_icon' src='../imgs/show_icon.jpg'> </a></th>
+                <th><a href='../crudUsers/modifyUser.php?id=<?php echo $value->getId()?>'><img  class='amd_icon' src='../imgs/edit_icon.png'> </a></th>
+                <th><a href='../crudUsers/deleteUser.php?id=<?php echo $value->getId()?>'><img  class='amd_icon' src='../imgs/delete_icon.png'> </a></th>
+            </tr>
 
         <?php
         }
@@ -57,6 +62,27 @@ class ControlUsers{
         }
         return false;
 
+    }
+
+
+    function getUserById($id){
+        foreach($this->AllUsers as $value){
+            if($value->getId() == $id){
+                return $value;
+            }
+        }
+        return false;
+    }
+
+    function deleteUserById($id){
+        $sql3 = "DELETE FROM usuarios WHERE `ID` =".$id ;
+        $res=mysqli_query($this->bd->getConnection(),$sql3);
+        if ($res === TRUE) {
+            $this->fetchAllProducts();
+            header("Location:adminProds.php");
+        }else {
+            echo "ERROR";
+        }
     }
 }
 ?>
