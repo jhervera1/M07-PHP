@@ -78,8 +78,7 @@ class ControlUsers{
         $sql3 = "DELETE FROM usuarios WHERE `ID` =".$id ;
         $res=mysqli_query($this->bd->getConnection(),$sql3);
         if ($res === TRUE) {
-            $this->fetchAllProducts();
-            header("Location:adminProds.php");
+            header("Location:checkUsers.php");
         }else {
             echo "ERROR";
         }
