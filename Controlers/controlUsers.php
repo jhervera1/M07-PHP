@@ -75,6 +75,7 @@ class ControlUsers{
     }
 
     function deleteUserById($id){
+        
         $sql3 = "DELETE FROM usuarios WHERE `ID` =".$id ;
         $res=mysqli_query($this->bd->getConnection(),$sql3);
         if ($res === TRUE) {
@@ -82,6 +83,26 @@ class ControlUsers{
         }else {
             echo "ERROR";
         }
+
+    }
+    function modifyUserById($id){
+        
+        $user = $this->getUserById($id);
+        $sql2 = "UPDATE usuarios SET Usuario='".$user->getUsername()."', Contraseña='".$user->getPassword()."', Correo='".$user->getMail()."', image='".$user->getAvatar()."' where ID='".$user->getId()."'";
+        $res=mysqli_query($this->bd->getConnection(),$sql2);
+        if ($res === TRUE) {
+            $this->fetchAllProducts();
+            header("Location:adminProds.php");
+        }else {
+            echo "ERROR";
+        }
+
+
+    }
+
+
+    modifyUser($id, $user){
+        $this->getUserById($id) = $user; 
     }
 }
 ?>
