@@ -22,7 +22,10 @@ $ctrlUsers = new ControlUsers();
             <tr>
                 <th> Nombre del Producto </th> <th> Precio </th>
             </tr>
-                <?php $ctrlUsers->showAllUsers(); ?>
+            <?php $ctrlUsers->showAllUsers(); ?>
+            <tr>
+                <a href="addUser.php" ><img class='amd_icon' src="../imgs/add_icon.png"> </a>   
+            </tr>
         </table>
     </div>
 

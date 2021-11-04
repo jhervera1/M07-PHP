@@ -1,6 +1,6 @@
 <?php
- include 'Controlers/controlProducts.php';
- include 'Controlers/controlUsers.php';
+ include_once 'Controlers/controlProducts.php';
+ include_once 'Controlers/controlUsers.php';
  session_start();
  
     $id = $_SESSION['userID'];

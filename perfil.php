@@ -1,9 +1,10 @@
 <?php
-include 'Controlers/accessBD.php';
+include_once 'Controlers/accessBD.php';
+include_once 'Controlers/controlUsers.php';
 session_start();
 $id = $_SESSION['userID'];
 $admin = $_SESSION['admin'];
-
+$ctrlUsers = new ControlUsers();
 $bd = new accessBD();
 
 ?>
@@ -36,10 +37,10 @@ $bd = new accessBD();
                         </form>
                     <?php
                     }
-                    if($admin == 1){
-                        echo "<a href='adminProds.php'>administrar productos </a>";
-                    }                
-                ?>
+                    if($ctrlUsers->checkAdmin()){ ?>
+                        <a href='crudUsers/checkUsers.php'>Administrar usuarios </a>       
+                    <?php } ?>    
+                    <a href='adminProds.php'>administrar productos </a>
             </div>
         </div>
     </div>

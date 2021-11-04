@@ -1,7 +1,7 @@
 <?php
 
-include_once '../models/user.php';
-include 'accessBD.php';
+include_once 'models/user.php';
+include_once 'accessBD.php';
 
 class ControlUsers{
 
@@ -51,10 +51,10 @@ class ControlUsers{
         }
 
     }
-    function checkAdmin($id){
+    function checkAdmin(){
         
         foreach ($this->AllUsers as $value){
-            if($value->getId() == $id){
+            if($value->getId() == $_SESSION['userID']){
                 if($value->getAdmin() == 1){
                     return true;
                 }
@@ -101,8 +101,12 @@ class ControlUsers{
     }
 
 
-    modifyUser($id, $user){
-        $this->getUserById($id) = $user; 
+    function modifyUser($id, $user){
+        foreach($this->allUsers as $value){
+            if($value->getId() == $id){
+                $value = $user;
+            }
+        } 
     }
 }
 ?>
