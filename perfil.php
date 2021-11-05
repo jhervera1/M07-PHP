@@ -36,7 +36,7 @@ $bd = new accessBD();
                             <button type='submit' name='submit' class='buttons'>Tancar sessio</button>
                         </form>
                     <?php
-                    }
+                    } 
                     if($ctrlUsers->checkAdmin()){ ?>
                         <a href='crudUsers/checkUsers.php'>Administrar usuarios </a>       
                     <?php } ?>    
