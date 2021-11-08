@@ -1,6 +1,11 @@
 <?php
 
-include_once 'models/user.php';
+if (is_file("models/user.php")){
+	include_once ("models/user.php");
+	}
+	else {
+	include_once ("../models/user.php");
+	}
 include_once 'accessBD.php';
 
 class ControlUsers{
@@ -108,5 +113,39 @@ class ControlUsers{
             }
         } 
     }
+
+    function usernameUnavailable($username){
+        
+        $sql2 = "SELECT * from usuarios where 1";
+        $res=mysqli_query($this->bd->getConnection(),$sql2);
+        while ($fila=$res->fetch_assoc()) {
+            echo $fila['Usuario'];
+            if($username == $fila["Usuario"]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function addUser($user){
+
+        $sql = 'INSERT INTO `usuarios` (`ID`,`Usuario`,`Contraseña`,`Correo`,`image`,`Admin`) VALUES (NULL, "'.$user->getUsername().'","'.$user->getPassword().'","'.$user->getMail().'","'.$user->getAvatar().'",'.$user->getAdmin().')';
+        $res=mysqli_query($this->bd->getConnection(),$sql);
+        if ($res === TRUE) {
+           echo "OK";
+        }else {
+            echo "ERROR";
+        }
+    }
+
+    function convertCheckIntoBool($admin)
+    {
+        if($admin == 'on'){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
 }
 ?>

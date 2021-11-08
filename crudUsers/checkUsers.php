@@ -24,7 +24,7 @@ $ctrlUsers = new ControlUsers();
             </tr>
             <?php $ctrlUsers->showAllUsers(); ?>
             <tr>
-                <a href="addUser.php" ><img class='amd_icon' src="../imgs/add_icon.png"> </a>   
+                <a href="addUser.html" ><img class='amd_icon' src="../imgs/add_icon.png"> </a>   
             </tr>
         </table>
     </div>

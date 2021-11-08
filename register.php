@@ -1,19 +1,25 @@
 <?php
 
-include 'accessBD.php';
+include 'Controlers/accessBD.php';
+include_once 'Controlers/controlUsers.php';
+include_once 'models/user.php';
 
-//$username =$_POST["username"];
 $targetDir = "uploads/";
 $fileName = $_FILES["image"]["name"];
 $targetFilePath = $targetDir.$fileName;
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+
 $username = $_POST["username"];
 $password = $_POST["password"];
 $confirm_password = $_POST["confirm_password"];
 $email = $_POST["email"];
+
 $user = false;
 $pass = false;
+
+$userAdded = new Users();
 $bd = new AccessBD();
+$ctrlUsers = new ControlUsers();
 
 if(isset($_POST['submit'])) { 
     if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)){
@@ -28,15 +34,7 @@ if(isset($_POST['submit'])) {
 
         if(trim($username) != ""){
             if(preg_match('/^[a-zA-Z0-9_]+$/', trim($username))){
-                $sql2 = "SELECT * from usuarios where 1";
-                $consulta2=mysqli_query($bd->getConnection(),$sql2);
-                if(mysql_num_rows($consulta2) >= 0){
-                    while ($fila=$consulta2->fetch_assoc()) {
-                        if($username != $fila["usuario"]){
-                            $user = true;
-                        }
-                    }
-                }
+                $user = $ctrlUsers->usernameUnavailable(trim($username));
             }
         }
         if(trim($password) != "" && trim($confirm_password) != ""){
@@ -49,9 +47,13 @@ if(isset($_POST['submit'])) {
             echo "Porfavor introduzca una contraseña";
         }
         if($user && $pass){
-            $sql = 'INSERT INTO `usuarios` (`ID`,`Usuario`,`Contraseña`,`Correo`,`image`) VALUES (NULL, "'.$username.'","'.$password.'","'.$email.'","'.$src.'")';
-            $consulta=mysqli_query($bd->getConnection(),$sql);
-            header("Location:login.html");
+            $userAdded->setUsername($username);
+            $userAdded->setPassword($password);
+            $userAdded->setMail($email);
+            $userAdded->setAvatar($src);
+            $userAdded->setAdmin(0);
+            $ctrlUsers->addUser($userAdded);
+            header("Location: login.html");
         }
     }
 } 

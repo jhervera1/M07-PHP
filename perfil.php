@@ -1,4 +1,5 @@
 <?php
+include_once 'models/user.php';
 include_once 'Controlers/accessBD.php';
 include_once 'Controlers/controlUsers.php';
 session_start();

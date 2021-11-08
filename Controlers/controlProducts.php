@@ -104,11 +104,10 @@ class ControlProducts{
     }
     private function convertCheckIntoBool($available)
     {
-        $aval;
         if($available == 'on'){
-            return $aval = 1;
+            return 1;
         }else{
-            return $aval = 0;
+            return 0;
         }
     }
 }
