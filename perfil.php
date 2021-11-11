@@ -3,8 +3,9 @@ include_once 'models/user.php';
 include_once 'Controlers/accessBD.php';
 include_once 'Controlers/controlUsers.php';
 session_start();
+
 $id = $_SESSION['userID'];
-$admin = $_SESSION['admin'];
+
 $ctrlUsers = new ControlUsers();
 $bd = new accessBD();
 
@@ -29,10 +30,10 @@ $bd = new accessBD();
                     $sql = "SELECT * FROM `usuarios` WHERE ID='$id'";
                     $consulta=mysqli_query($bd->getConnection(),$sql);
                     if ($fila=$consulta->fetch_assoc()) {?>
-                        <img class='profile_image' src='<?php echo $fila['image'] ?>' >
-                        <p class='flex_p'><b>Usuari:</b><?php echo $fila['Usuario'] ?></p>
-                        <p class='flex_p'><b>Contrasenya:</b><?php echo $fila['Contraseña'] ?></p>
-                        <p class='flex_p'><b>Correu:</b><?php echo $fila['Correo'] ?></p>
+                        <img class='profile_image' src='<?php echo $fila['image']; ?>' >
+                        <p class='flex_p'><b>Usuari:</b><?php echo $fila['Usuario']; ?></p>
+                        <p class='flex_p'><b>Contrasenya:</b><?php echo $fila['Contraseña']; ?></p>
+                        <p class='flex_p'><b>Correu:</b><?php echo $fila['Correo']; ?></p>
                         <form action="logout.php">
                             <button type='submit' name='submit' class='buttons'>Tancar sessio</button>
                         </form>
@@ -41,7 +42,12 @@ $bd = new accessBD();
                     if($ctrlUsers->checkAdmin()){ ?>
                         <a href='crudUsers/checkUsers.php'>Administrar usuarios </a>       
                     <?php } ?>    
-                    <a href='adminProds.php'>administrar productos </a>
+                    <a href='adminProds.php'>
+                        <?php if($ctrlUsers->checkAdmin()){
+                            echo "administrar productos";
+                        }else{
+                            echo "Comprar productos";
+                        } ?></a>
             </div>
         </div>
     </div>

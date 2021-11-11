@@ -136,15 +136,18 @@ class ControlUsers{
         }else {
             echo "ERROR";
         }
+        
     }
 
     function convertCheckIntoBool($admin)
     {
+
         if($admin == 'on'){
             return 1;
         }else{
             return 0;
         }
+
     }
 
 }

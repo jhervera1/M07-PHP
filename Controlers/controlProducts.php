@@ -49,6 +49,8 @@ class ControlProducts{
             $product->setName($row['Nombre']);
             $product->setPrice($row['Precio']);
             $product->setAvailability($row['Disponibilidad']);
+            $product->setImg($row['Image']);
+            
             $this->productsAvailable[] = $product;
 
         }
@@ -74,7 +76,7 @@ class ControlProducts{
         $res=mysqli_query($this->bd->getConnection(),$sql2);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location:adminProds.php");
+            header("Location:../adminProds.php");
         }else {
             echo "ERROR";
         }
@@ -84,20 +86,20 @@ class ControlProducts{
         $res=mysqli_query($this->bd->getConnection(),$sql3);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location:adminProds.php");
+            header("Location: ../adminProds.php");
         }else {
             echo "ERROR";
         }
     }
 
-    function addProduct($prodName,$price,$available){
+    function addProduct($prodName,$price,$available,$src){
         
-        $sql4 = "INSERT INTO productos (ID,Nombre,Precio,Disponibilidad) VALUES (NULL,'".$prodName."',".$price.",".$this->convertCheckIntoBool($available).")";
-        echo $sql4;
+        $sql4 = "INSERT INTO productos (ID,Nombre,Precio,Disponibilidad,`Image`) VALUES (NULL,'".$prodName."',".$price.",".$this->convertCheckIntoBool($available).",'".$src."')";
+        echo $sql4."<br>";
         $res=mysqli_query($this->bd->getConnection(),$sql4);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location:adminProds.php");
+            header("Location: ../adminProds.php");
         }else {
             echo "ERROR";
         }

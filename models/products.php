@@ -6,7 +6,7 @@ class Product{
     private $name;
     private $price;
     private $available;
-
+    private $img;
     public function __construct() {}
 
 
@@ -22,6 +22,9 @@ class Product{
     function setAvailability($available){
         $this->available = $available;
     }
+    function setImg($img){
+        $this->img = $img;
+    }
     function getId(){
         return $this->id;
     }
@@ -34,7 +37,9 @@ class Product{
     function getAvailability(){
         return $this->available;
     }
-
+    function getImg(){
+        return $this->img;
+    }
 }
 
 ?>

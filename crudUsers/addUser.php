@@ -46,6 +46,7 @@ if(isset($_POST['submit'])) {
                 }
             }
         }else{
+            
             echo "Porfavor introduzca una contraseña";
         }
         if($user && $pass){
