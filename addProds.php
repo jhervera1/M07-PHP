@@ -1,6 +1,6 @@
 <?php
 
-include 'Controlers/controlProducts.php';
+include_once 'Controlers/controlProducts.php';
 
 
 $targetDir = "uploads/";
@@ -22,8 +22,7 @@ if(isset($_POST['submit'])) {
 
         $imageData = base64_encode(file_get_contents($folder));
 
-        $src = 'data:'.$fileType.';base64,'.$imageData;
-        echo $src;
+        $src = 'data:'.$fileType.';base64,'.$imageData;       
     }
 }
 $ctrlProds->addProduct($name,$price,$available,$src);

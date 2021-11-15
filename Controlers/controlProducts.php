@@ -33,6 +33,7 @@ class ControlProducts{
             $product->setName($row['Nombre']);
             $product->setPrice($row['Precio']);
             $product->setAvailability($row['Disponibilidad']);
+            $product->setImg($row['Image']);
             $this->productsArray[] = $product;
         }
     }
@@ -50,25 +51,38 @@ class ControlProducts{
             $product->setPrice($row['Precio']);
             $product->setAvailability($row['Disponibilidad']);
             $product->setImg($row['Image']);
-            
             $this->productsAvailable[] = $product;
 
         }
 
     }
     public function showProducts(){
+        $showedArray = array();
+        if($this->ctrlUsers->checkAdmin()){
+            $showedArray = $this->productsArray;
+        }else{
+            $showedArray = $this->productsAvailable;
+        }
+        foreach ($showedArray as $valor){?>
      
-        foreach ($this->productsArray as $valor){ ?>
-            <tr><th> <?php echo $valor->getName(); ?></th><th><?php echo $valor->getPrice(); ?></th>
-            <?php if($this->ctrlUsers->checkAdmin()){?> <th><a href='../modifyProd.php?id=".$valor->getId()."'><img  class='amd_icon' src='imgs/edit_icon.png'> </a>
-            <a href='../deleteProd.php?pid=".$valor->getId()."'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>
+            <tr><th><img class="products_image" src="<?php echo $valor->getImg();?>"></th><th> <?php echo $valor->getName(); ?></th><th><?php echo $valor->getPrice(); ?></th>
+            <?php if($this->ctrlUsers->checkAdmin()){?> <th><a href='../modifyProd.php?id=<?php echo $valor->getId(); ?>'><img  class='amd_icon' src='imgs/edit_icon.png'> </a>
+            <a href='../deleteProd.php?pid=<?php echo $valor->getId(); ?>'><img  class='amd_icon' src='imgs/delete_icon.png'></a> </th> </tr>
+            
             <?php
             }
+            if(!$this->ctrlUsers->checkAdmin()){?>
+                <a href='../details.php?pid=<?php echo $valor->getId(); ?>'><img  class='amd_icon' src='imgs/show_icon.jpg'></a> </th> </tr>
+            <?php }
         }
     }
 
     function getProducts(){
+        if($this->ctrlUsers->checkAdmin()){
         return $this->productsArray;
+        }else{
+            return $this->productsAvailable; 
+        }
     }
     function modifyProduct($prod){
         //modify 
@@ -76,7 +90,7 @@ class ControlProducts{
         $res=mysqli_query($this->bd->getConnection(),$sql2);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location:../adminProds.php");
+            header("Location:adminProds.php");
         }else {
             echo "ERROR";
         }
@@ -86,7 +100,7 @@ class ControlProducts{
         $res=mysqli_query($this->bd->getConnection(),$sql3);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location: ../adminProds.php");
+            header("Location: adminProds.php");
         }else {
             echo "ERROR";
         }
@@ -95,11 +109,10 @@ class ControlProducts{
     function addProduct($prodName,$price,$available,$src){
         
         $sql4 = "INSERT INTO productos (ID,Nombre,Precio,Disponibilidad,`Image`) VALUES (NULL,'".$prodName."',".$price.",".$this->convertCheckIntoBool($available).",'".$src."')";
-        echo $sql4."<br>";
         $res=mysqli_query($this->bd->getConnection(),$sql4);
         if ($res === TRUE) {
             $this->fetchAllProducts();
-            header("Location: ../adminProds.php");
+            header("Location: adminProds.php");
         }else {
             echo "ERROR";
         }
