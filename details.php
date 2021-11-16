@@ -22,8 +22,8 @@
                 <img class='profile_image' src='<?php echo $product->getImg(); ?>' >
                 <p class='flex_p'><b>Nombre:</b><?php echo $product->getName(); ?></p>
                 <p class='flex_p'><b>Precio:</b><?php echo $product->getPrice(); ?></p>
-                <form>
-                    <button type='submit' name='submit' class='buttons'>Tancar sessio</button>
+                <form action="addToCart.php?pid=<?php echo $pid ?>" method="post">
+                    <button type='submit' name='submit' class='buttons'>Añadir a la cesta</button>
                 </form>
                 
             </div>
@@ -34,11 +34,4 @@
 
 </html>
 
-<?php
-if(isset($_POST['submit'])) { 
 
-    $_SESSION['cart'][] = $product;
-
-}
-
-?>

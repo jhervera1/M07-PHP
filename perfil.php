@@ -5,7 +5,7 @@ include_once 'Controlers/controlUsers.php';
 session_start();
 
 $id = $_SESSION['userID'];
-$_SESSION['cart'] = array();
+
 $ctrlUsers = new ControlUsers();
 $bd = new accessBD();
 

@@ -11,6 +11,8 @@ class ControlProducts{
     private $productsAvailable = array();
     private $bd;
     private $ctrlUsers;
+    private $cart = array();
+
     public function __construct() {
 
         $this->ctrlUsers = new ControlUsers(); 
@@ -18,6 +20,14 @@ class ControlProducts{
         $this->fetchAllProducts();
         $this->fetchAvailableProducts();
 
+    }
+
+    public function addToCart($prod){
+        echo $prod->getName();
+        $this->cart[] = $prod;
+    }
+    public function getCart(){
+        return $this->cart;
     }
 
     private function fetchAllProducts(){
@@ -72,7 +82,7 @@ class ControlProducts{
             <?php
             }
             if(!$this->ctrlUsers->checkAdmin()){?>
-                <a href='../details.php?pid=<?php echo $valor->getId(); ?>'><img  class='amd_icon' src='imgs/show_icon.jpg'></a> </th> </tr>
+                <th><a href='../details.php?pid=<?php echo $valor->getId(); ?>'><img  class='amd_icon' src='imgs/show_icon.jpg'></a> </th> </tr>
             <?php }
         }
     }
@@ -125,6 +135,18 @@ class ControlProducts{
             return 0;
         }
     }
+
+    public function findProdById($id){
+
+        foreach($this->productsAvailable as $prod){
+            if($prod->getId() == $id){
+                echo $prod->getName();
+                return $prod;
+            }
+        }
+
+    }
+
 }
 
 ?>
