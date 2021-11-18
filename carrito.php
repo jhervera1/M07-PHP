@@ -2,15 +2,21 @@
 
 
 include_once('Controlers/controlProducts.php');
+
+session_start();
+
+$cartIds = $_SESSION['cart'];
 $ctrlProds = new ControlProducts();
 
-$cart = $ctrlProds->getCart();
-foreach($cart as $value){
-    echo $value->getName();
+$cart = array();
+
+foreach($cartIds as $prodId){
+    $cart[] = $ctrlProds->findProdById($prodId);
 }
+
 ?>
 
-<!--
+
 <html>
 
 <body>
@@ -25,9 +31,7 @@ foreach($cart as $value){
                 <p class='flex_p'><b>Nombre:</b><?php echo $value->getName() ?></p>
                 <p class='flex_p'><b>Precio:</b><?php echo $value->getPrice() ?></p>
                 <?php } ?>
-                <form action="logout.php">
-                    <button type='submit' name='submit' class='buttons'>Tancar sessio</button>
-                </form>
+               
             </div>
         </div>
     </div>
@@ -35,4 +39,4 @@ foreach($cart as $value){
 </body>
 
 
-</html>->
+</html>

@@ -96,8 +96,7 @@ class ControlUsers{
         $sql2 = "UPDATE usuarios SET Usuario='".$user->getUsername()."', Contraseña='".$user->getPassword()."', Correo='".$user->getMail()."', image='".$user->getAvatar()."' where ID='".$user->getId()."'";
         $res=mysqli_query($this->bd->getConnection(),$sql2);
         if ($res === TRUE) {
-            $this->fetchAllProducts();
-            header("Location:adminProds.php");
+            header("Location:checkUsers.php");
         }else {
             echo "ERROR";
         }

@@ -11,7 +11,7 @@ class ControlProducts{
     private $productsAvailable = array();
     private $bd;
     private $ctrlUsers;
-    private $cart = array();
+  
 
     public function __construct() {
 
@@ -21,14 +21,20 @@ class ControlProducts{
         $this->fetchAvailableProducts();
 
     }
-
+   
+    /*
     public function addToCart($prod){
         echo $prod->getName();
         $this->cart[] = $prod;
+        foreach($this->cart as $product){
+            echo $product->getName();
+        }
     }
+
     public function getCart(){
-        return $this->cart;
+        return self::$cart;
     }
+    */
 
     private function fetchAllProducts(){
         
@@ -68,11 +74,7 @@ class ControlProducts{
     }
     public function showProducts(){
         $showedArray = array();
-        if($this->ctrlUsers->checkAdmin()){
-            $showedArray = $this->productsArray;
-        }else{
-            $showedArray = $this->productsAvailable;
-        }
+        $showedArray = $this->getProducts();
         foreach ($showedArray as $valor){?>
      
             <tr><th><img class="products_image" src="<?php echo $valor->getImg();?>"></th><th> <?php echo $valor->getName(); ?></th><th><?php echo $valor->getPrice(); ?></th>
@@ -140,7 +142,7 @@ class ControlProducts{
 
         foreach($this->productsAvailable as $prod){
             if($prod->getId() == $id){
-                echo $prod->getName();
+                //echo $prod->getName();
                 return $prod;
             }
         }

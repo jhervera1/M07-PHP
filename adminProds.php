@@ -6,7 +6,7 @@
     $id = $_SESSION['userID'];
     $controlProds = new ControlProducts();
     $controlUsers = new ControlUsers();
-    
+    $cart = $controlProds->getCart();
 ?> 
     <html>
     
