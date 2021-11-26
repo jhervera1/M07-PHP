@@ -21,7 +21,7 @@ foreach($cartIds as $prodId){
 
 <body>
     <div>
-        <div class='wrapper fadeInDown'>
+        <div class='wrapper fadeInDown'> 
             <div id='formContent'>
                 <?php
                 

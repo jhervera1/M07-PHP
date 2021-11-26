@@ -32,7 +32,7 @@ if(isset($_POST['submit'])) {
         $imageData = base64_encode(file_get_contents($folder));
 
         $src = 'data:'.$fileType.';base64,'.$imageData;
-
+        
         if(trim($username) != ""){
             if(preg_match('/^[a-zA-Z0-9_]+$/', trim($username))){
                 

@@ -18,7 +18,6 @@ class ControlUsers{
         
         $this->bd = new AccessBd();
         $this->fetchAllUsers();
-        //$this->showAllUsers();
     
     }
 

@@ -48,7 +48,7 @@ if(isset($_POST['submit'])) {
         }
         if($user && $pass){
             $userAdded->setUsername($username);
-            $userAdded->setPassword($password);
+            $userAdded->setPassword(password_hash($password, PASSWORD_DEFAULT));
             $userAdded->setMail($email);
             $userAdded->setAvatar($src);
             $userAdded->setAdmin(0);

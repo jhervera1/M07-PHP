@@ -22,20 +22,6 @@ class ControlProducts{
 
     }
    
-    /*
-    public function addToCart($prod){
-        echo $prod->getName();
-        $this->cart[] = $prod;
-        foreach($this->cart as $product){
-            echo $product->getName();
-        }
-    }
-
-    public function getCart(){
-        return self::$cart;
-    }
-    */
-
     private function fetchAllProducts(){
         
         unset($productsArray);
@@ -73,8 +59,8 @@ class ControlProducts{
 
     }
     public function showProducts(){
-        $showedArray = array();
-        $showedArray = $this->getProducts();
+
+        $showedArray = $this->getProducts(); 
         foreach ($showedArray as $valor){?>
      
             <tr><th><img class="products_image" src="<?php echo $valor->getImg();?>"></th><th> <?php echo $valor->getName(); ?></th><th><?php echo $valor->getPrice(); ?></th>
@@ -97,9 +83,9 @@ class ControlProducts{
         }
     }
     function modifyProduct($prod){
-        //modify 
-        $sql2 = "UPDATE productos SET Nombre='".$prod->getName()."', Precio='".$prod->getPrice()."', Disponibilidad='".$prod->getAvailability()."' where ID='".$prod->getId()."'";
-        $res=mysqli_query($this->bd->getConnection(),$sql2);
+        
+        $sql = "UPDATE productos SET Nombre='".$prod->getName()."', Precio='".$prod->getPrice()."', Disponibilidad='".$prod->getAvailability()."' where ID='".$prod->getId()."'";
+        $res=mysqli_query($this->bd->getConnection(),$sql);
         if ($res === TRUE) {
             $this->fetchAllProducts();
             header("Location:adminProds.php");
@@ -108,8 +94,8 @@ class ControlProducts{
         }
     }
     function deleteProduct($id){
-        $sql3 = "DELETE FROM productos WHERE `ID` =".$id ;
-        $res=mysqli_query($this->bd->getConnection(),$sql3);
+        $sql = "DELETE FROM productos WHERE `ID` =".$id ;
+        $res=mysqli_query($this->bd->getConnection(),$sql);
         if ($res === TRUE) {
             $this->fetchAllProducts();
             header("Location: adminProds.php");
@@ -120,8 +106,8 @@ class ControlProducts{
 
     function addProduct($prodName,$price,$available,$src){
         
-        $sql4 = "INSERT INTO productos (ID,Nombre,Precio,Disponibilidad,`Image`) VALUES (NULL,'".$prodName."',".$price.",".$this->convertCheckIntoBool($available).",'".$src."')";
-        $res=mysqli_query($this->bd->getConnection(),$sql4);
+        $sql = "INSERT INTO productos (ID,Nombre,Precio,Disponibilidad,`Image`) VALUES (NULL,'".$prodName."',".$price.",".$this->convertCheckIntoBool($available).",'".$src."')";
+        $res=mysqli_query($this->bd->getConnection(),$sql);
         if ($res === TRUE) {
             $this->fetchAllProducts();
             header("Location: adminProds.php");
@@ -142,7 +128,6 @@ class ControlProducts{
 
         foreach($this->productsAvailable as $prod){
             if($prod->getId() == $id){
-                //echo $prod->getName();
                 return $prod;
             }
         }
