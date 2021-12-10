@@ -14,7 +14,7 @@ if(isset($_POST['submit'])) {
     $consulta=mysqli_query($bd->getConnection(),$sql);
 
     while ($fila=$consulta->fetch_assoc()) {
-        if($username == $fila['Usuario'] && password_hash($password, PASSWORD_DEFAULT) == $fila['Contraseña']){
+        if($username == $fila['Usuario'] && /*password_hash($password, PASSWORD_DEFAULT)*/ $password == $fila['Contraseña']){
             $_SESSION['userID'] = $fila['ID'];
             $confirmedUser = true;
             break;

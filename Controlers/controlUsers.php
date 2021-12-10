@@ -55,6 +55,7 @@ class ControlUsers{
         }
 
     }
+    
     function checkAdmin(){
         
         foreach ($this->AllUsers as $value){

@@ -113,7 +113,7 @@ class ControlProducts{
             header("Location: adminProds.php");
         }else {
             echo "ERROR";
-        }
+        } 
     }
     private function convertCheckIntoBool($available)
     {

@@ -32,7 +32,6 @@ $bd = new accessBD();
                     if ($fila=$consulta->fetch_assoc()) {?>
                         <img class='profile_image' src='<?php echo $fila['image']; ?>' >
                         <p class='flex_p'><b>Usuari:</b><?php echo $fila['Usuario']; ?></p>
-                        <p class='flex_p'><b>Contrasenya:</b><?php echo $fila['Contraseña']; ?></p>
                         <p class='flex_p'><b>Correu:</b><?php echo $fila['Correo']; ?></p>
                         <form action="logout.php">
                             <button type='submit' name='submit' class='buttons'>Tancar sessio</button>
