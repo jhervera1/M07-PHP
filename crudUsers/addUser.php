@@ -52,7 +52,7 @@ if(isset($_POST['submit'])) {
         if($user && $pass){
 
             $userAdded->setUsername($username);
-            $userAdded->setPassword($password);
+            $userAdded->setPassword($ctrlUsers->passwordCrypt($password));
             $userAdded->setMail($mail);
             $userAdded->setAvatar($src);
             $userAdded->setAdmin($ctrlUsers->convertCheckIntoBool($admin));

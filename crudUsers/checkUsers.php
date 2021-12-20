@@ -8,6 +8,7 @@ $ctrlUsers = new ControlUsers();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,20 +16,24 @@ $ctrlUsers = new ControlUsers();
     <title>control de usuarios</title>
     <link rel='stylesheet' href='../styles.css'>
 </head>
+
 <body>
-    
-    <div class='itemList itemListContent'>
-        <table>
+<header id="header_background">
+    <a class="cart_icon" href="../perfil.php"><img class="cart_icon white_icon" src="../imgs/back_icon.png"></a>
+</header>
+    <div class="wrapper fadeInDown">
+        <table id="formContent">
             <tr>
-                <th> Nombre del Producto </th> <th> Precio </th>
+                <th> Nombre del Producto </th>
+                <th> Precio </th>
             </tr>
             <?php $ctrlUsers->showAllUsers(); ?>
-            <tr>
-                <a href="addUser.html" ><img class='amd_icon' src="../imgs/add_icon.png"> </a>   
-            </tr>
+            <th><a href="addUser.html"><img class='amd_icon' src="../imgs/add_icon.png"> </a></th>
         </table>
+        
     </div>
 
 
 </body>
+
 </html>

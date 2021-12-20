@@ -8,14 +8,16 @@
     <title>Register</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
-
+<header id="header_background">
+    <a class="cart_icon" href="checkUsers.php"><img class="cart_icon white_icon" src="../imgs/back_icon.png"></a>
+</header>
 <body>
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <form action="addUser.php" method="post" enctype="multipart/form-data">
                 <input type="text" id="username" name="username" class="fadeIn first" placeholder="Usuari"><br><br>
-                <input type="text" id="password" name="password" class="fadeIn second" placeholder="Contrasenya"><br><br>
-                <input type="text" id="confirm_password" name="confirm_password" class="fadeIn third" placeholder="Confirmar contrasenya"><br><br>
+                <input type="password" id="password" name="password" class="fadeIn second" placeholder="Contrasenya"><br><br>
+                <input type="password" id="confirm_password" name="confirm_password" class="fadeIn third" placeholder="Confirmar contrasenya"><br><br>
                 <input type="text" id="mail" name="mail" class="fadeIn fourth" placeholder="Correu"><br><br>
                 <span  class="fadeIn fifth">administrador</span>
                 <input type="checkbox" name="admin" class="fadeIn fifth" /><br><br>

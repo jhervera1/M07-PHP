@@ -18,7 +18,9 @@ $user = $ctrlUsers->getUserById($id);
     <title>Perfil</title>
     <link rel='stylesheet' href='../styles.css'>
 </head>
-
+<header id="header_background">
+    <a class="cart_icon" href="checkUsers.php"><img class="cart_icon white_icon" src="../imgs/back_icon.png"></a>
+</header>
 <body>
     <div>
         <div class='wrapper fadeInDown'>
